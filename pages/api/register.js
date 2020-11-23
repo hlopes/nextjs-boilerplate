@@ -5,7 +5,7 @@ import { connectToDatabase } from '../../utils/mongodb';
 import errors from '../../utils/errors';
 
 const handler = async (req, res) => {
-    const { name, email, password, image, isExternal } = JSON.parse(req.body);
+    const { name, email, password } = JSON.parse(req.body);
 
     if (!name || !email || !password) {
         res.statusCode = 422;
@@ -24,7 +24,7 @@ const handler = async (req, res) => {
             return res.json({ ...errors.SECRET_NOT_DEFINED });
         }
 
-        if (savedUser && !isExternal) {
+        if (savedUser) {
             res.statusCode = 422;
 
             return res.json({ ...errors.ALREADY_REGISTERED });
@@ -33,41 +33,14 @@ const handler = async (req, res) => {
         const hashed = await bcrypt.hash(password, 12);
 
         if (hashed) {
-            if (savedUser) {
-                await db
-                    .collection('users')
-                    .updateOne({ email }, { $set: { password } });
-
-                const token = jwt.sign(
-                    { _id: savedUser._id },
-                    process.env.JWT_SECRET
-                );
-
-                return res.json({
-                    message: 'Saved successfully',
-                    user: savedUser,
-                    token,
-                });
-            }
-
             const user = {
                 email,
                 name,
                 password: hashed,
-                image,
-                points: 0,
-                questionsAnswered: 0,
+                isInternal: true,
             };
 
             await db.collection('users').insertOne(user);
-
-            const foundUser = await db.collection('users').findOne({ email });
-
-            await db.collection('preferences').insertOne({
-                user: foundUser,
-                numQuestions: 3,
-                gender: '',
-            });
 
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
 

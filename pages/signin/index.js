@@ -1,15 +1,5 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import {
-    Button,
-    Dimmer,
-    Grid,
-    Header as HeaderSem,
-    Icon,
-    Loader,
-    Message,
-    Segment,
-} from 'semantic-ui-react';
 import { ToastContainer } from 'react-toastify';
 
 import Link from 'next/link';
@@ -34,56 +24,23 @@ function Index({ providers }) {
 
     return (
         <Layout>
-            {loading && (
-                <Dimmer active inverted>
-                    <Loader size="big">Loading</Loader>
-                </Dimmer>
-            )}
+            {loading && 'is loading ...'}
             <ToastContainer bodyClassName={styles.toastBody} hideProgressBar />
-            <Grid
-                className={styles.form}
-                textAlign="center"
-                verticalAlign="middle"
-            >
-                <Grid.Row>
-                    <Grid.Column
-                        width={5}
-                        only="tablet computer large screen widescreen"
-                    />
-                    <Grid.Column mobile={16} tablet={8} computer={6}>
-                        <Segment raised padded="very">
-                            <HeaderSem as="h2" textAlign="center">
-                                Welcome back
-                            </HeaderSem>
-                            <SigninForm />
-                            <Message>
-                                New player?{' '}
-                                <Link href={'/register'}>Register</Link>
-                            </Message>
-                            {providers
-                                ? Object.values(providers).map(
-                                      (provider, index) => (
-                                          <Button
-                                              key={index}
-                                              circular
-                                              onClick={handleSignInProvider(
-                                                  provider.id
-                                              )}
-                                          >
-                                              <Icon name={provider.id} /> Signin
-                                              with Google
-                                          </Button>
-                                      )
-                                  )
-                                : null}
-                        </Segment>
-                    </Grid.Column>
-                    <Grid.Column
-                        width={5}
-                        only="tablet computer large screen widescreen"
-                    />
-                </Grid.Row>
-            </Grid>
+            <h2>Welcome back</h2>
+            <SigninForm />
+            <p>
+                New player? <Link href={'/register'}>Register</Link>
+            </p>
+            {providers
+                ? Object.values(providers).map((provider, index) => (
+                      <button
+                          key={index}
+                          onClick={handleSignInProvider(provider.id)}
+                      >
+                          Signin with Google
+                      </button>
+                  ))
+                : null}
         </Layout>
     );
 }

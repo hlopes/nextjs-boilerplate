@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { Provider as AuthProvider } from 'next-auth/client';
 
-import 'semantic-ui-css/semantic.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import '../styles/globals.css';

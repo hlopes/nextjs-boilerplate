@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect } from 'react';
-import { Button, Dimmer, Form, Loader } from 'semantic-ui-react';
 import { useForm } from 'react-hook-form';
 import { compose } from 'recompose';
 
@@ -20,7 +19,7 @@ const SigninForm = () => {
     const router = useRouter();
     const { setUser } = useUserContext();
     const { add, clear } = useNotificationContext();
-    const { handleSubmit, register, errors, setValue, getValues } = useForm();
+    const { handleSubmit, register, errors, getValues } = useForm();
 
     const { username, password } = getValues();
     const { error, data, isLoading, refetch } = useLogin(username, password);
@@ -37,29 +36,6 @@ const SigninForm = () => {
             router.push('/');
         }
     }, [data, router, setUser]);
-
-    const changeValue = useCallback(
-        (e, { name, value }) => {
-            setValue(name, value);
-        },
-        [setValue]
-    );
-
-    useEffect(() => {
-        register(
-            {
-                name: 'username',
-            },
-            {
-                required: 'Required field',
-                pattern: {
-                    value: EMAIL_REGEX,
-                    message: 'Invalid email address',
-                },
-            }
-        );
-        register({ name: 'password' }, { required: 'Required field' });
-    }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         clear();
@@ -78,41 +54,33 @@ const SigninForm = () => {
     }, [clear, add, error, onSuccess, data]);
 
     return (
-        <Form size="large" onSubmit={handleSubmit(submit)}>
-            {isLoading && (
-                <Dimmer active inverted>
-                    <Loader size="big">Loading</Loader>
-                </Dimmer>
-            )}
-            <Form.Input
+        <form onSubmit={handleSubmit(submit)}>
+            {isLoading && 'is Loading...'}
+            <input
                 name="username"
-                fluid
-                icon="user"
-                iconPosition="left"
                 placeholder="Username/E-mail"
-                onChange={changeValue}
-                error={!!errors.username}
+                ref={register({
+                    required: 'Required field',
+                    pattern: {
+                        value: EMAIL_REGEX,
+                        message: 'Invalid email address',
+                    },
+                })}
             />
             <p className={styles.error}>
                 {errors.username && errors.username.message}
             </p>
-            <Form.Input
+            <input
                 name="password"
-                fluid
-                icon="lock"
-                iconPosition="left"
                 placeholder="Password"
                 type="password"
-                onChange={changeValue}
-                error={!!errors.password}
+                ref={register({ required: 'Required field' })}
             />
             <p className={styles.error}>
                 {errors.password && errors.password.message}
             </p>
-            <Button primary fluid size="huge">
-                Login
-            </Button>
-        </Form>
+            <button>Login</button>
+        </form>
     );
 };
 

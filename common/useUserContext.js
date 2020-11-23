@@ -5,13 +5,11 @@ import React, {
     useEffect,
     useMemo,
     useCallback,
-    useState,
 } from 'react';
 import PropTypes from 'prop-types';
+
 import { useSession, signout } from 'next-auth/client';
 import { useRouter } from 'next/router';
-
-import useRegister from './api-hooks/useRegister';
 
 const initialState = null;
 
@@ -26,12 +24,8 @@ const reducer = (state, action) => {
 export const UserContext = createContext({});
 
 export const UserContextProvider = ({ children }) => {
-    const [isExternalRegistered, setIsExternalRegistered] = useState(false);
-
     const router = useRouter();
     const [session] = useSession();
-
-    const [registerUser] = useRegister();
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -49,11 +43,11 @@ export const UserContextProvider = ({ children }) => {
 
         localStorage.removeItem('user');
 
-        dispatch({ type: 'USER', payload: null });
-
-        if (user.isExternal) {
+        if (!user?.isInternal) {
             signout();
         }
+
+        dispatch({ type: 'USER', payload: null });
     }, [dispatch]);
 
     useEffect(() => {
@@ -67,61 +61,22 @@ export const UserContextProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        async function registerExternalUser() {
-            if (session && !isExternalRegistered) {
-                return await registerUser({
-                    name: session.user.name,
-                    username: session.user.email,
-                    password: session.accessToken,
-                    image: session.user.image,
-                    isExternal: true,
-                });
+        const currentToken = localStorage.getItem('jwt');
+
+        if (session && session.accessToken !== currentToken) {
+            localStorage.setItem('jwt', session.accessToken);
+            localStorage.setItem('user', JSON.stringify(session?.user));
+
+            dispatch({
+                type: 'USER',
+                payload: { ...session?.user },
+            });
+
+            if (router.pathname !== '/') {
+                router.push('/');
             }
         }
-
-        registerExternalUser().then((data) => {
-            if (data) {
-                localStorage.setItem('jwt', data.token);
-
-                // Remove password
-                const {
-                    email,
-                    image,
-                    isExternal,
-                    name,
-                    points,
-                    score,
-                    questionsAnswered,
-                    _id,
-                } = data.user;
-
-                localStorage.setItem(
-                    'user',
-                    JSON.stringify({
-                        email,
-                        image,
-                        isExternal,
-                        name,
-                        points,
-                        score,
-                        questionsAnswered,
-                        _id,
-                    })
-                );
-
-                dispatch({
-                    type: 'USER',
-                    payload: { ...data.user, isExternal: true },
-                });
-
-                if (router.pathname !== '/') {
-                    router.push('/');
-                }
-
-                setIsExternalRegistered(true);
-            }
-        });
-    }, [registerUser, router, session, isExternalRegistered]);
+    }, [router, session]);
 
     return (
         <UserContext.Provider

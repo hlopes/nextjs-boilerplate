@@ -39,18 +39,11 @@ const handler = async (req, res) => {
             );
 
             // remove password
-            const {
-                _id,
-                name,
-                email,
-                score,
-                points,
-                questionsAnswered,
-            } = savedUser;
+            const { _id, name, email } = savedUser;
 
             return res.json({
                 token,
-                user: { _id, name, email, score, points, questionsAnswered },
+                user: { _id, name, email },
             });
         }
 

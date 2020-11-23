@@ -1,21 +1,14 @@
-# Quiz Game
-
-[Github](https://yog9.github.io/SnapShot/)
-
-[Demo of Quiz Game](https://quiz-game-psi.vercel.app/)
-
-
-![](/screenshot.png)
+# NextJS Boilerplate
 
 ### Summary
 
-Quiz Game is a game created using NextJS, React,React Hooks and Context API. The Routes were setup for five default pages.
+An opinionated NextJS Boilerplate created using NextJS, React,React Hooks and Context API.
 
 This project was bootstrapped with [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ### Motivation
 
-The purpose of this project was to get familiar with NextJS.
+The purpose of this project is to have a base for new applications.
 
 ### Getting Started
 
@@ -34,18 +27,6 @@ Create a .env.local file in project root folder. In this file add the following 
 
 `NEXTAUTH_GOOGLE_SECRET`
 
-`NEXTAUTH_TWITTER_ID`
-
-`NEXTAUTH_TWITTER_SECRET`
-
-`NEXTAUTH_GITHUB_ID`
-
-`NEXTAUTH_GITHUB_SECRET`
-
-`NEXTAUTH_FACEBOOK_ID`
-
-`NEXTAUTH_FACEBOOK_SECRET`
-
 `NEXTAUTH_DATABASE_URL`
 
 ##### Install dependencies
@@ -58,31 +39,13 @@ Create a .env.local file in project root folder. In this file add the following 
 
 ### Built With
 
-- [React Toastify](https://fkhadra.github.io/react-toastify/introduction/)
-- [Semantic UI](https://react.semantic-ui.com/)
-- [React Query](https://react-query.tanstack.com/)
-- [React JS](https://reactjs.org/)
 - [NextJS](https://nextjs.org/)
 - [Next/Auth](https://next-auth.js.org/)
+- [React JS](https://reactjs.org/)
+- [React Toastify](https://fkhadra.github.io/react-toastify/introduction/)
+- [React Query](https://react-query.tanstack.com/)
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 - [JWT Authentication](https://jwt.io/)
-
-### Features
-
-*1. Responsive design using `@artsy/fresnel` and Semantic UI.*
-
-*2. Login and Register of players.*
-
-*3. Top 10.*
-
-*4. Game.*
-
-*5. Account:*
-- Statistics;
-- Gender;
-- Number of Question;
-
-*6. About.*
 
 ## Getting Started
 

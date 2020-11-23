@@ -5,12 +5,8 @@ const Header = () => {
     return (
         <header>
             <Head>
-                <title>Quiz Game</title>
+                <title>NextJS boilerplate</title>
                 <link rel="icon" href="/favicon.ico" />
-                <meta
-                    name="google-site-verification"
-                    content="UaJCNet1KY1oGhnQE_LohcZJYQVep04nKjonLzUI2Ug"
-                />
             </Head>
         </header>
     );
