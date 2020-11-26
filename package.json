@@ -15,9 +15,12 @@
   },
   "devDependencies": {
     "@artsy/fresnel": "^1.2.2",
+    "@emotion/react": "^11.1.1",
+    "@emotion/styled": "^11.0.0",
     "babel-eslint": "^10.1.0",
     "bcrypt": "^5.0.0",
     "classnames": "^2.2.6",
+    "emotion-normalize": "^10.1.0",
     "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-auto-import": "^0.1.0",

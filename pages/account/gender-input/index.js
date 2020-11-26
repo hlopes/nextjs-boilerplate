@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'semantic-ui-react';
 
-import styles from '../Account.module.css';
+import { Image } from './styles';
 
 const GenderInput = ({ gender, onSetGender }) => {
     const handleGender = useCallback((gender) => () => onSetGender(gender), [
@@ -10,22 +9,18 @@ const GenderInput = ({ gender, onSetGender }) => {
     ]);
 
     return (
-        <Image.Group size="tiny">
+        <>
             <Image
-                className={gender === 'female' ? styles.selectedGender : ''}
+                gender={gender}
                 src={'female.png'}
-                rounded
-                size="mini"
                 onClick={handleGender('female')}
             />
             <Image
-                className={gender === 'male' ? styles.selectedGender : ''}
+                gender={gender}
                 src={'male.png'}
-                rounded
-                size="mini"
                 onClick={handleGender('male')}
             />
-        </Image.Group>
+        </>
     );
 };
 

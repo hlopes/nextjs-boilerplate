@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
 
-import { ToastContainer } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { compose } from 'recompose';
 import { useRouter } from 'next/router';
@@ -16,7 +15,8 @@ import withGuest from '../../common/hocs/withGuest';
 import useRegister from '../../common/api-hooks/useRegister';
 import Layout from '../../components/layout/Layout';
 
-import styles from './Register.module.css';
+import { h2 } from '../../shared/typography';
+import { StyledToastContainer, Error } from '../../shared/styles';
 
 const Register = () => {
     const router = useRouter();
@@ -64,7 +64,7 @@ const Register = () => {
     return (
         <Layout>
             {isLoading && 'is loading ...'}
-            <ToastContainer bodyClassName={styles.toastBody} hideProgressBar />
+            <StyledToastContainer hideProgressBar />
             <h2>New Player</h2>
             <form onSubmit={handleSubmit(submit)}>
                 <input
@@ -72,9 +72,7 @@ const Register = () => {
                     placeholder="Name"
                     ref={register({ required: 'Required field' })}
                 />
-                <p className={styles.error}>
-                    {errors.name && errors.name.message}
-                </p>
+                <Error>{errors.name && errors.name.message}</Error>
                 <input
                     name="username"
                     placeholder="Username/E-mail"
@@ -86,18 +84,14 @@ const Register = () => {
                         },
                     })}
                 />
-                <p className={styles.error}>
-                    {errors.username && errors.username.message}
-                </p>
+                <Error>{errors.username && errors.username.message}</Error>
                 <input
                     name="password"
                     placeholder="Password"
                     type="password"
                     ref={register({ required: 'Required field' })}
                 />
-                <p className={styles.error}>
-                    {errors.password && errors.password.message}
-                </p>
+                <Error>{errors.password && errors.password.message}</Error>
                 <button>Register</button>
             </form>
         </Layout>

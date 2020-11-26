@@ -13,7 +13,7 @@ import {
 import useLogin from '../../../common/api-hooks/useLogin';
 import useUserContext from '../../../common/useUserContext';
 
-import styles from '../Signin.module.css';
+import { Error } from '../../../shared/styles';
 
 const SigninForm = () => {
     const router = useRouter();
@@ -67,18 +67,14 @@ const SigninForm = () => {
                     },
                 })}
             />
-            <p className={styles.error}>
-                {errors.username && errors.username.message}
-            </p>
+            <Error>{errors.username && errors.username.message}</Error>
             <input
                 name="password"
                 placeholder="Password"
                 type="password"
                 ref={register({ required: 'Required field' })}
             />
-            <p className={styles.error}>
-                {errors.password && errors.password.message}
-            </p>
+            <Error>{errors.password && errors.password.message}</Error>
             <button>Login</button>
         </form>
     );

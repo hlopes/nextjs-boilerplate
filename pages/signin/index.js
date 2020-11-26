@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { ToastContainer } from 'react-toastify';
 
 import Link from 'next/link';
 import { providers, signIn, useSession } from 'next-auth/client';
 
 import Layout from '../../components/layout/Layout';
 
-import SigninForm from './signin-form';
+import { h2 } from '../../shared/typography';
+import { StyledToastContainer } from '../../shared/styles';
 
-import styles from './Signin.module.css';
+import SigninForm from './signin-form';
 
 function Index({ providers }) {
     // eslint-disable-next-line no-unused-vars
@@ -25,7 +25,7 @@ function Index({ providers }) {
     return (
         <Layout>
             {loading && 'is loading ...'}
-            <ToastContainer bodyClassName={styles.toastBody} hideProgressBar />
+            <StyledToastContainer hideProgressBar />
             <h2>Welcome back</h2>
             <SigninForm />
             <p>
