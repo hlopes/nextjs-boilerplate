@@ -15,8 +15,8 @@ import withGuest from '../../common/hocs/withGuest';
 import useRegister from '../../common/api-hooks/useRegister';
 import Layout from '../../components/layout/Layout';
 
-import { h2 } from '../../shared/typography';
-import { StyledToastContainer, Error } from '../../shared/styles';
+import { h2 } from '../../theme/typography';
+import { StyledToastContainer, Error } from '../../theme/styles';
 
 const Register = () => {
     const router = useRouter();

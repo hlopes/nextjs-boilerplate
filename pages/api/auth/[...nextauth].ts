@@ -1,3 +1,4 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 
@@ -63,7 +64,7 @@ const options = {
     // @link https://next-auth.js.org/configuration/callbacks
     callbacks: {
         /**
-         * Intercept signIn request and return true if the user is allowed.
+         * Intercept signIn request and return true if the User is allowed.
          *
          * @link https://next-auth.js.org/configuration/callbacks#sign-in-callback
          * @param  {object} user     User object
@@ -94,11 +95,11 @@ const options = {
          * @param  {object}  user      User object      (only available on sign in)
          * @param  {object}  account   Provider account (only available on sign in)
          * @param  {object}  profile   Provider profile (only available on sign in)
-         * @param  {boolean} isNewUser True if new user (only available on sign in)
+         * @param  {boolean} isNewUser True if new User (only available on sign in)
          * @return {object}            JSON Web Token that will be saved
          */
         jwt: async (token, user, account, profile, isNewUser) => {
-            //const isSignIn = (user) ? true : false
+            //const isSignIn = (User) ? true : false
             // Add auth_time to token on signin in
             //if (isSignIn) { token.auth_time = Math.floor(Date.now() / 1000) }
             return Promise.resolve(token);
@@ -121,6 +122,7 @@ const options = {
     // debug: true, // Use this option to enable debug messages in the console
 };
 
-const Auth = (req, res) => NextAuth(req, res, options);
+const Auth = (req: NextApiRequest, res: NextApiResponse) =>
+    NextAuth(req, res, options);
 
 export default Auth;

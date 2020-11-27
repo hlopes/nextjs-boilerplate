@@ -10,7 +10,7 @@ import { HydrationRenderProvider } from '../common/useHydrationRender';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-import { globalStyles } from '../shared/styles';
+import { globalStyles } from '../theme/styles';
 
 function App({ Component, pageProps }) {
     const { session } = pageProps;

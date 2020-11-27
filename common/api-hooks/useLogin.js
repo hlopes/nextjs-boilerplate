@@ -10,7 +10,7 @@ const useLogin = (username, password) => {
             }),
         });
 
-        return result.json();
+        return await result.json();
     };
 
     return useQuery(`login-${username}-${password}`, login, {

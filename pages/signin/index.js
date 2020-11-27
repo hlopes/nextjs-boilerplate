@@ -6,8 +6,8 @@ import { providers, signIn, useSession } from 'next-auth/client';
 
 import Layout from '../../components/layout/Layout';
 
-import { h2 } from '../../shared/typography';
-import { StyledToastContainer } from '../../shared/styles';
+import { h2 } from '../../theme/typography';
+import { StyledToastContainer } from '../../theme/styles';
 
 import SigninForm from './signin-form';
 

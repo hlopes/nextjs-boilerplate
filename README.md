@@ -44,6 +44,7 @@ Create a .env.local file in project root folder. In this file add the following 
 - [React JS](https://reactjs.org/)
 - [React Toastify](https://fkhadra.github.io/react-toastify/introduction/)
 - [React Query](https://react-query.tanstack.com/)
+- [Emotion](https://emotion.sh/docs/introduction)
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 - [JWT Authentication](https://jwt.io/)
 

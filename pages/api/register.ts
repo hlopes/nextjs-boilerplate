@@ -1,10 +1,13 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+
+import { User } from '../../types/User';
 
 import { connectToDatabase } from '../../utils/mongodb';
 import errors from '../../utils/errors';
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { name, email, password } = JSON.parse(req.body);
 
     if (!name || !email || !password) {
@@ -16,7 +19,7 @@ const handler = async (req, res) => {
     try {
         const { db } = await connectToDatabase();
 
-        const savedUser = await db.collection('users').findOne({ email });
+        const savedUser: User = await db.collection('users').findOne({ email });
 
         if (!process.env.JWT_SECRET) {
             res.statusCode = 422;
@@ -42,7 +45,7 @@ const handler = async (req, res) => {
 
             await db.collection('users').insertOne(user);
 
-            const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+            const token = jwt.sign({ _id: user.email }, process.env.JWT_SECRET);
 
             res.status(201);
 

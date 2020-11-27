@@ -25,6 +25,6 @@ export default {
     },
     ERROR_REGISTERING: {
         errorCode: 106,
-        message: 'Error registering user',
+        message: 'Error registering User',
     },
 };

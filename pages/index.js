@@ -2,7 +2,7 @@ import React from 'react';
 
 import Layout from '../components/layout/Layout';
 
-import { Basic, Combined, Animated, bounce } from '../shared/styles';
+import { Basic, Combined, Animated, bounce } from '../theme/styles';
 
 const Home = () => {
     return (

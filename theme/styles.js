@@ -104,7 +104,9 @@ export const Animated = styled.div`
 `;
 
 export const StyledToastContainer = styled(ToastContainer)`
-    color: ${white};
+    .Toastify__toast {
+        color: ${white};
+    }
 `;
 
 export const Error = styled.p`

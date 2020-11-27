@@ -6,10 +6,12 @@ import React, {
     useMemo,
     useCallback,
 } from 'react';
-import PropTypes from 'prop-types';
 
 import { useSession, signout } from 'next-auth/client';
 import { useRouter } from 'next/router';
+
+import { User } from '../types/User';
+import { UserContext as UserContextType } from '../types/UserContext';
 
 const initialState = null;
 
@@ -21,13 +23,22 @@ const reducer = (state, action) => {
     return state;
 };
 
-export const UserContext = createContext({});
+export const UserContext = createContext<UserContextType>({
+    isAuthenticated: false,
+    logout(): void {},
+    setUser(user: User): void {}, // eslint-disable-line no-unused-vars
+    user: undefined,
+});
 
-export const UserContextProvider = ({ children }) => {
+type UserContextProviderProps = {
+    children: any;
+};
+
+export const UserContextProvider = ({ children }: UserContextProviderProps) => {
     const router = useRouter();
     const [session] = useSession();
 
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch]: [User, any] = useReducer(reducer, initialState);
 
     const isAuthenticated = useMemo(() => !!state?.email, [state]);
 
@@ -39,7 +50,7 @@ export const UserContextProvider = ({ children }) => {
     );
 
     const logout = useCallback(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
+        const user: User = JSON.parse(localStorage.getItem('user'));
 
         localStorage.removeItem('user');
 
@@ -51,7 +62,7 @@ export const UserContextProvider = ({ children }) => {
     }, [dispatch]);
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
+        const user: User = JSON.parse(localStorage.getItem('user'));
 
         if (user) {
             dispatch({ type: 'USER', payload: user });
@@ -73,7 +84,14 @@ export const UserContextProvider = ({ children }) => {
             });
 
             if (router.pathname !== '/') {
-                router.push('/');
+                router
+                    .push('/')
+                    .catch((error) =>
+                        console.error(
+                            'Something went wrong redirecting to /',
+                            error
+                        )
+                    );
             }
         }
     }, [router, session]);
@@ -87,10 +105,7 @@ export const UserContextProvider = ({ children }) => {
     );
 };
 
-UserContextProvider.propTypes = {
-    children: PropTypes.any,
-};
-
-const useUserContext = () => useContext(UserContext);
+const useUserContext = (): { user: User } =>
+    useContext<UserContextType>(UserContext);
 
 export default useUserContext;

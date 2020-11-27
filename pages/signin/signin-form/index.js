@@ -13,7 +13,7 @@ import {
 import useLogin from '../../../common/api-hooks/useLogin';
 import useUserContext from '../../../common/useUserContext';
 
-import { Error } from '../../../shared/styles';
+import { Error } from '../../../theme/styles';
 
 const SigninForm = () => {
     const router = useRouter();

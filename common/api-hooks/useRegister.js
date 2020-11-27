@@ -11,7 +11,7 @@ const useRegister = () => {
             }),
         });
 
-        return result.json();
+        return await result.json();
     };
 
     return useMutation(register, {
