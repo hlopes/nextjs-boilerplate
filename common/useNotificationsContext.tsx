@@ -1,4 +1,6 @@
 import React, {
+    FC,
+    PropsWithChildren,
     useState,
     useContext,
     useRef,
@@ -8,7 +10,18 @@ import React, {
 } from 'react';
 import { toast } from 'react-toastify';
 
-const NotificationContext = React.createContext({});
+import {
+    NotificationContext as NotificationContextType,
+    Notification,
+} from '../types/NotificationContext';
+
+const NotificationContext = React.createContext<NotificationContextType>({
+    notifications: [],
+    clear(): void {},
+    filterByCategory(c: string): void {}, // eslint-disable-line no-unused-vars
+    remove(id: string): void {}, // eslint-disable-line no-unused-vars
+    add(n: Notification): void {}, // eslint-disable-line no-unused-vars
+});
 
 const AUTOCLOSE_TOAST = 1000;
 
@@ -17,9 +30,11 @@ export const NOTIFICATION_CATEGORIES = {
     success: 'SUCCESS',
 };
 
-export function NotificationContextProvider(props) {
+export const NotificationContextProvider: FC = (
+    props: PropsWithChildren<{}>
+) => {
     const [notifications, setNotifications] = useState([]);
-    const uid = useRef(0);
+    const uid = useRef<number>(0);
 
     const remove = useCallback((uid) => {
         setNotifications((oldNotifications) => {
@@ -80,7 +95,7 @@ export function NotificationContextProvider(props) {
         });
     }, [notifications]);
 
-    const context = useMemo(
+    const context: NotificationContextType = useMemo(
         () => ({
             notifications,
             add,
@@ -92,11 +107,10 @@ export function NotificationContextProvider(props) {
     );
 
     return <NotificationContext.Provider value={context} {...props} />;
-}
+};
 
-export function useNotificationContext() {
-    return useContext(NotificationContext);
-}
+export const useNotificationContext = (): NotificationContextType =>
+    useContext<NotificationContextType>(NotificationContext);
 
 export function withNotificationProvider(Component) {
     return function WithNotificationProvider(props) {

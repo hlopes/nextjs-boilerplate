@@ -1,10 +1,11 @@
 import React from 'react';
+import { NextPage } from 'next';
 
 import Layout from '../components/layout/Layout';
 
-import { Basic, Combined, Animated, bounce } from '../theme/styles';
+import { Basic, Combined } from '../theme/styles';
 
-const Home = () => {
+const Home: NextPage = () => {
     return (
         <Layout>
             <p>This is homepage.</p>
@@ -12,7 +13,6 @@ const Home = () => {
             <Combined>
                 With <code>:hover</code>.
             </Combined>
-            <Animated animation={bounce}>Let's bounce.</Animated>
         </Layout>
     );
 };

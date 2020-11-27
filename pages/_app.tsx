@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import { Provider as AuthProvider } from 'next-auth/client';
 import 'react-toastify/dist/ReactToastify.css';
+import type { AppProps } from 'next/app';
 
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary';
 import { UserContextProvider } from '../common/useUserContext';
@@ -12,7 +12,7 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 
 import { globalStyles } from '../theme/styles';
 
-function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }: AppProps) => {
     const { session } = pageProps;
 
     return (
@@ -30,11 +30,6 @@ function App({ Component, pageProps }) {
             </ErrorBoundary>
         </>
     );
-}
-
-App.propTypes = {
-    Component: PropTypes.any,
-    pageProps: PropTypes.object,
 };
 
 export default App;

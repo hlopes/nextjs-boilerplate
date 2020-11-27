@@ -105,7 +105,7 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
     );
 };
 
-const useUserContext = (): { user: User } =>
+const useUserContext = (): UserContextType =>
     useContext<UserContextType>(UserContext);
 
 export default useUserContext;

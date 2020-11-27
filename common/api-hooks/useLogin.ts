@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 
-const useLogin = (username, password) => {
+const useLogin = (username: string, password: string) => {
     const login = async () => {
         const result = await fetch('/api/login', {
             method: 'POST',

@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect } from 'react';
-
 import { useForm } from 'react-hook-form';
 import { compose } from 'recompose';
 import { useRouter } from 'next/router';
+import { NextPage } from 'next';
+
+import { Category } from '../../types/NotificationContext';
 
 import { EMAIL_REGEX } from '../../utils/regexes';
 import {
-    NOTIFICATION_CATEGORIES,
     useNotificationContext,
     withNotificationProvider,
 } from '../../common/useNotificationsContext';
@@ -16,9 +17,9 @@ import useRegister from '../../common/api-hooks/useRegister';
 import Layout from '../../components/layout/Layout';
 
 import { h2 } from '../../theme/typography';
-import { StyledToastContainer, Error } from '../../theme/styles';
+import { Error, StyledToastContainer } from '../../theme/styles';
 
-const Register = () => {
+const Register: NextPage = () => {
     const router = useRouter();
     const { add, clear } = useNotificationContext();
     const { setUser } = useUserContext();
@@ -28,8 +29,9 @@ const Register = () => {
 
     const submit = useCallback(
         ({ name, username, password }) => {
-            // TODO deal with promise
-            registerUser({ name, username, password });
+            registerUser({ name, username, password }).catch((error) =>
+                console.error('error on registering user ', error)
+            );
         },
         [registerUser]
     );
@@ -50,12 +52,12 @@ const Register = () => {
 
         if (error || data?.errorCode) {
             add({
-                message: error?.message ?? data?.message,
-                category: NOTIFICATION_CATEGORIES.error,
+                message: error['message'] ?? data?.message,
+                category: Category.Error,
             });
         } else if (data?.user) {
             add({
-                category: NOTIFICATION_CATEGORIES.success,
+                category: Category.Success,
                 onClose: onSuccess,
             });
         }

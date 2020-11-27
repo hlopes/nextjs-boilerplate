@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { css, Global, keyframes } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { ToastContainer } from 'react-toastify';
@@ -74,15 +74,6 @@ export const hoverStyles = css`
     }
 `;
 
-export const bounce = keyframes`
-  from {
-    transform: scale(1.01);
-  }
-  to {
-    transform: scale(0.99);
-  }
-`;
-
 export const Basic = styled.div`
     ${basicStyles};
 
@@ -94,13 +85,6 @@ export const Basic = styled.div`
 export const Combined = styled.div`
     ${basicStyles};
     ${hoverStyles};
-`;
-export const Animated = styled.div`
-    ${basicStyles};
-    ${hoverStyles};
-
-    animation: ${({ animation }) => animation} 0.2s infinite ease-in-out
-        alternate;
 `;
 
 export const StyledToastContainer = styled(ToastContainer)`

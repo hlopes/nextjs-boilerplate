@@ -1,12 +1,13 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { compose } from 'recompose';
 
 import { useRouter } from 'next/router';
 
+import { Category } from '../../../types/NotificationContext';
+
 import { EMAIL_REGEX } from '../../../utils/regexes';
 import {
-    NOTIFICATION_CATEGORIES,
     useNotificationContext,
     withNotificationProvider,
 } from '../../../common/useNotificationsContext';
@@ -15,7 +16,7 @@ import useUserContext from '../../../common/useUserContext';
 
 import { Error } from '../../../theme/styles';
 
-const SigninForm = () => {
+const SigninForm: FC = () => {
     const router = useRouter();
     const { setUser } = useUserContext();
     const { add, clear } = useNotificationContext();
@@ -42,12 +43,12 @@ const SigninForm = () => {
 
         if (error || data?.errorCode) {
             add({
-                message: error?.message ?? data?.message,
-                category: NOTIFICATION_CATEGORIES.error,
+                message: error['message'] ?? data?.message,
+                category: Category.Error,
             });
         } else if (data?.user) {
             add({
-                category: NOTIFICATION_CATEGORIES.success,
+                category: Category.Success,
                 onClose: onSuccess,
             });
         }
@@ -79,8 +80,6 @@ const SigninForm = () => {
         </form>
     );
 };
-
-SigninForm.propTypes = {};
 
 const enhanced = compose(withNotificationProvider);
 

@@ -5,7 +5,19 @@ import { findBreakpointAtWidth } from '../components/media/Media';
 
 import useHydrationRender from './useHydrationRender';
 
-const useBreakpoints = () => {
+type Breakpoints = {
+    isExtraSmall?: boolean;
+    isSmall?: boolean;
+    isMedium?: boolean;
+    isLarge?: boolean;
+    isExtraLarge?: boolean;
+    gteSmall?: boolean;
+    gteMedium?: boolean;
+    lteSmall?: boolean;
+    lteMedium?: boolean;
+};
+
+const useBreakpoints = (): Breakpoints => {
     const isHydrationRender = useHydrationRender();
 
     const [windowWidth, setWindowWidth] = useState(0);

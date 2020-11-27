@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { compose } from 'recompose';
+import { NextPage } from 'next';
 
 import { User } from '../../types/User';
 
@@ -7,7 +8,7 @@ import withAuth from '../../common/hocs/withAuth';
 import useUserContext from '../../common/useUserContext';
 import Layout from '../../components/layout/Layout';
 
-const Account: FC = () => {
+const Account: NextPage = () => {
     const { user }: { user: User } = useUserContext();
 
     return (

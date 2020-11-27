@@ -1,6 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {
+    FC,
+    PropsWithChildren,
+    useState,
+    useEffect,
+    useContext,
+} from 'react';
 
-export const HydrationRenderContext = React.createContext(true);
+export const HydrationRenderContext = React.createContext<boolean>(true);
 
 function useHydrationRenderProviderValue() {
     const [isHydrationRender, setIsHydrationRender] = useState(true);
@@ -12,16 +18,16 @@ function useHydrationRenderProviderValue() {
     return isHydrationRender;
 }
 
-export function HydrationRenderProvider(props) {
+export const HydrationRenderProvider: FC = (props: PropsWithChildren<{}>) => {
     const isHydrationRender = useHydrationRenderProviderValue();
 
     return (
         <HydrationRenderContext.Provider value={isHydrationRender} {...props} />
     );
-}
+};
 
 export function useHydrationRender() {
-    return useContext(HydrationRenderContext);
+    return useContext<boolean>(HydrationRenderContext);
 }
 
 export default useHydrationRender;

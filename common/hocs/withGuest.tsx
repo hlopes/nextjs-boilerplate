@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { PropsWithChildren, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import useUserContext from '../useUserContext';
 
 export default function withGuest(Component) {
-    return function WithGuestComponent(props) {
+    return function WithGuestComponent(props: PropsWithChildren<any>) {
         const router = useRouter();
 
         const { user } = useUserContext();
