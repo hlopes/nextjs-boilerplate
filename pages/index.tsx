@@ -2,17 +2,16 @@ import React from 'react';
 import { NextPage } from 'next';
 
 import Layout from '../components/layout/Layout';
-
-import { Basic, Combined } from '../theme/styles';
+import { Section } from '../theme/styles';
+import { h2 } from '../theme/typography';
 
 const Home: NextPage = () => {
     return (
         <Layout>
-            <p>This is homepage.</p>
-            <Basic>Cool Styles</Basic>
-            <Combined>
-                With <code>:hover</code>.
-            </Combined>
+            <Section>
+                <h2>Home</h2>
+                <p>This is the homepage.</p>
+            </Section>
         </Layout>
     );
 };

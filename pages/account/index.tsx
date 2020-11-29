@@ -8,16 +8,18 @@ import withAuth from '../../common/hocs/withAuth';
 import useUserContext from '../../common/useUserContext';
 import Layout from '../../components/layout/Layout';
 
+import { Section } from '../../theme/styles';
+
 const Account: NextPage = () => {
     const { user }: { user: User } = useUserContext();
 
     return (
         <Layout>
-            <section>
+            <Section>
                 <div>{user?.image && <img src={user?.image} />}</div>
                 <div>{user.name}</div>
                 <div>{user.email}</div>
-            </section>
+            </Section>
         </Layout>
     );
 };

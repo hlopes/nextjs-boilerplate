@@ -15,9 +15,17 @@ import useUserContext from '../../common/useUserContext';
 import withGuest from '../../common/hocs/withGuest';
 import useRegister from '../../common/api-hooks/useRegister';
 import Layout from '../../components/layout/Layout';
+import Input from '../../components/input';
 
 import { h2 } from '../../theme/typography';
-import { Error, StyledToastContainer } from '../../theme/styles';
+import {
+    Error,
+    StyledToastContainer,
+    Button,
+    Section,
+} from '../../theme/styles';
+
+import { Form } from './styles';
 
 const Register: NextPage = () => {
     const router = useRouter();
@@ -65,37 +73,39 @@ const Register: NextPage = () => {
 
     return (
         <Layout>
-            {isLoading && 'is loading ...'}
-            <StyledToastContainer hideProgressBar />
-            <h2>New Player</h2>
-            <form onSubmit={handleSubmit(submit)}>
-                <input
-                    name="name"
-                    placeholder="Name"
-                    ref={register({ required: 'Required field' })}
-                />
-                <Error>{errors.name && errors.name.message}</Error>
-                <input
-                    name="username"
-                    placeholder="Username/E-mail"
-                    ref={register({
-                        required: 'Required field',
-                        pattern: {
-                            value: EMAIL_REGEX,
-                            message: 'Invalid email address',
-                        },
-                    })}
-                />
-                <Error>{errors.username && errors.username.message}</Error>
-                <input
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    ref={register({ required: 'Required field' })}
-                />
-                <Error>{errors.password && errors.password.message}</Error>
-                <button>Register</button>
-            </form>
+            <Section>
+                {isLoading && 'is loading ...'}
+                <StyledToastContainer hideProgressBar />
+                <h2>New Player</h2>
+                <Form onSubmit={handleSubmit(submit)}>
+                    <Input
+                        name="name"
+                        placeholder="Name"
+                        ref={register({ required: 'Required field' })}
+                    />
+                    <Error>{errors.name && errors.name.message}</Error>
+                    <Input
+                        name="username"
+                        placeholder="Username/E-mail"
+                        ref={register({
+                            required: 'Required field',
+                            pattern: {
+                                value: EMAIL_REGEX,
+                                message: 'Invalid email address',
+                            },
+                        })}
+                    />
+                    <Error>{errors.username && errors.username.message}</Error>
+                    <Input
+                        name="password"
+                        placeholder="Password"
+                        type="password"
+                        ref={register({ required: 'Required field' })}
+                    />
+                    <Error>{errors.password && errors.password.message}</Error>
+                    <Button>Register</Button>
+                </Form>
+            </Section>
         </Layout>
     );
 };

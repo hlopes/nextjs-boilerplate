@@ -28,7 +28,10 @@ const useBreakpoints = (): Breakpoints => {
             200
         );
 
+        handleResize();
+
         window.addEventListener('resize', handleResize);
+
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 

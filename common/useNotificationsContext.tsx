@@ -1,6 +1,5 @@
 import React, {
     FC,
-    PropsWithChildren,
     useState,
     useContext,
     useRef,
@@ -30,9 +29,7 @@ export const NOTIFICATION_CATEGORIES = {
     success: 'SUCCESS',
 };
 
-export const NotificationContextProvider: FC = (
-    props: PropsWithChildren<{}>
-) => {
+export const NotificationContextProvider: FC = (props) => {
     const [notifications, setNotifications] = useState([]);
     const uid = useRef<number>(0);
 

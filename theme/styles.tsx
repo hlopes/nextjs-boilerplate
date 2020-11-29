@@ -6,13 +6,14 @@ import styled from '@emotion/styled';
 import { ToastContainer } from 'react-toastify';
 
 import normalize from './normalize';
-import { gteMediumMedia } from './custom-media';
-import { red, white } from './colors';
+import variables from './variables';
+import { black, grey, white } from './colors';
 
 export const globalStyles = (
     <Global
         styles={css`
             ${normalize}
+            ${variables}
 
             *,
             *::before,
@@ -29,13 +30,11 @@ export const globalStyles = (
             }
 
             body {
-                overflow-x: hidden;
-                padding: 1rem;
-                margin: 0;
-                background: papayawhip;
                 min-height: 100%;
-                font-family: Helvetica, Arial, sans-serif;
+                overflow-x: hidden;
                 font-size: 1.6rem;
+                font-family: Helvetica, Arial, sans-serif;
+                background: papayawhip;
                 -webkit-font-smoothing: antialiased;
             }
 
@@ -53,43 +52,48 @@ export const globalStyles = (
     />
 );
 
-export const basicStyles = css`
-    background-color: white;
-    color: ${red};
-    border: 1px solid lightgreen;
-    border-right: none;
-    border-bottom: none;
-    box-shadow: 0.5rem 0.5rem 0 0 lightgreen, 1rem 1rem 0 0 lightyellow;
-    transition: all 0.1s linear;
-    margin: 3rem 0;
-    padding: 1rem 0.5rem;
+export const shadow = css`
+    box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.14),
+        0 0.3rem 0.1rem -0.2rem rgba(0, 0, 0, 0.12),
+        0 0.1rem 0.5rem 0 rgba(0, 0, 0, 0.2);
 `;
 
-export const hoverStyles = css`
+export const navLinkStyle = css`
+    display: inline-block;
+    padding: 0 1.5rem;
+    color: ${white};
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: background-color 0.3s;
+
+    &:hover,
+    &:active {
+        color: ${black};
+        background-color: ${grey};
+    }
+`;
+
+export const Section = styled.section`
+    padding: 1rem;
+`;
+
+export const Button = styled.button`
+    height: 3.6rem;
+    padding: 0 16px;
+    font-size: 1.4rem;
+    line-height: 3.6rem;
+    letter-spacing: 0.05rem;
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+
+    ${shadow}
+
     &:hover {
-        color: white;
-        background-color: lightgray;
-        border-color: aqua;
-        box-shadow: -1.5rem -1.5rem 0 0 aqua, -3rem -3rem 0 0 cornflowerblue;
-    }
-`;
-
-export const Basic = styled.div`
-    ${basicStyles};
-
-    ${gteMediumMedia} {
-        margin: 6rem;
-    }
-`;
-
-export const Combined = styled.div`
-    ${basicStyles};
-    ${hoverStyles};
-`;
-
-export const StyledToastContainer = styled(ToastContainer)`
-    .Toastify__toast {
-        color: ${white};
+        background-color: ${grey};
     }
 `;
 
@@ -97,4 +101,10 @@ export const Error = styled.p`
     color: red;
     font-size: 0.8rem;
     text-align: left;
+`;
+
+export const StyledToastContainer = styled(ToastContainer)`
+    .Toastify__toast {
+        color: ${white};
+    }
 `;

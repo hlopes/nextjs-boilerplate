@@ -13,8 +13,11 @@ import {
 } from '../../../common/useNotificationsContext';
 import useLogin from '../../../common/api-hooks/useLogin';
 import useUserContext from '../../../common/useUserContext';
+import Input from '../../../components/input';
 
-import { Error } from '../../../theme/styles';
+import { Error, Button } from '../../../theme/styles';
+
+import { Form } from './styles';
 
 const SigninForm: FC = () => {
     const router = useRouter();
@@ -55,9 +58,9 @@ const SigninForm: FC = () => {
     }, [clear, add, error, onSuccess, data]);
 
     return (
-        <form onSubmit={handleSubmit(submit)}>
+        <Form onSubmit={handleSubmit(submit)}>
             {isLoading && 'is Loading...'}
-            <input
+            <Input
                 name="username"
                 placeholder="Username/E-mail"
                 ref={register({
@@ -69,15 +72,15 @@ const SigninForm: FC = () => {
                 })}
             />
             <Error>{errors.username && errors.username.message}</Error>
-            <input
+            <Input
                 name="password"
                 placeholder="Password"
                 type="password"
                 ref={register({ required: 'Required field' })}
             />
             <Error>{errors.password && errors.password.message}</Error>
-            <button>Login</button>
-        </form>
+            <Button>Login</Button>
+        </Form>
     );
 };
 

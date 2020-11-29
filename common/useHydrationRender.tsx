@@ -1,10 +1,4 @@
-import React, {
-    FC,
-    PropsWithChildren,
-    useState,
-    useEffect,
-    useContext,
-} from 'react';
+import React, { FC, useState, useEffect, useContext } from 'react';
 
 export const HydrationRenderContext = React.createContext<boolean>(true);
 
@@ -18,7 +12,7 @@ function useHydrationRenderProviderValue() {
     return isHydrationRender;
 }
 
-export const HydrationRenderProvider: FC = (props: PropsWithChildren<{}>) => {
+export const HydrationRenderProvider: FC = (props) => {
     const isHydrationRender = useHydrationRenderProviderValue();
 
     return (

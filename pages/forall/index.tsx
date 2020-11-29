@@ -4,12 +4,12 @@ import { NextPage } from 'next';
 import Layout from '../../components/layout/Layout';
 import { Section } from '../../theme/styles';
 
-const ForUsers: NextPage = () => (
+const ForAll: NextPage = () => (
     <Layout>
         <Section>
-            <p>For Users only.</p>
+            <p>For All.</p>
         </Section>
     </Layout>
 );
 
-export default ForUsers;
+export default ForAll;
