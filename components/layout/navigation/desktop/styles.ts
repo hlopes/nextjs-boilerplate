@@ -6,12 +6,12 @@ import { shadow, navLinkStyle } from '../../../../theme/styles';
 export const Nav = styled.nav`
     display: flex;
     align-items: center;
-    padding: 1rem;
+    width: 100%;
     height: 6.4rem;
+    padding: 1rem;
+    color: ${white};
     line-height: 6.4rem;
     background-color: ${black};
-    color: ${white};
-    width: 100%;
 
     ${shadow}
 
@@ -29,5 +29,5 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const StyledLink = styled.a`
-    ${navLinkStyle};
+    ${navLinkStyle}
 `;

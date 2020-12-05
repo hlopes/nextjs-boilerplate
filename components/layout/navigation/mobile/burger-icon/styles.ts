@@ -9,27 +9,27 @@ export type BaseProps = {
 };
 
 const commonSpinner = css`
-    transition: all 0.3s;
     box-sizing: border-box;
-    height: 0.3rem;
     width: 100%;
+    height: 0.3rem;
     background-color: ${white};
+    transition: all 0.3s;
 `;
 
 export const Icon = styled.div`
-    transition: all 0.3s;
-    box-sizing: border-box;
-    cursor: pointer;
     position: absolute;
-    z-index: ${burger};
     top: 50%;
     left: 1.5rem;
+    z-index: ${burger};
+    box-sizing: border-box;
     width: 2.2rem;
     transform: translateY(-50%);
+    cursor: pointer;
+    transition: all 0.3s;
 `;
 
 export const Horizontal = styled.div<BaseProps>`
-    ${commonSpinner};
+    ${commonSpinner}
 
     position: relative;
     float: left;
@@ -38,19 +38,19 @@ export const Horizontal = styled.div<BaseProps>`
 `;
 
 export const DiagonalPart1 = styled.div<BaseProps>`
-    ${commonSpinner};
+    ${commonSpinner}
 
     position: relative;
     float: left;
-    transform: ${({ isOpen }) => (isOpen ? 'rotate(135deg)' : 'rotate(0)')};
     margin-top: ${({ isOpen }) => (isOpen ? '0.8rem' : '0')};
+    transform: ${({ isOpen }) => (isOpen ? 'rotate(135deg)' : 'rotate(0)')};
 `;
 
 export const DiagonalPart2 = styled.div<BaseProps>`
-    ${commonSpinner};
+    ${commonSpinner}
 
     position: relative;
     float: left;
-    transform: ${({ isOpen }) => (isOpen ? 'rotate(-135deg)' : 'rotate(0)')};
     margin-top: ${({ isOpen }) => (isOpen ? '-0.9rem' : '0.3rem')};
+    transform: ${({ isOpen }) => (isOpen ? 'rotate(-135deg)' : 'rotate(0)')};
 `;

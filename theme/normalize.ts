@@ -12,8 +12,8 @@ const normalize = css`
         display: block;
     }
     h1 {
-        font-size: 2em;
         margin: 0.67em 0;
+        font-size: 2em;
     }
     hr {
         box-sizing: content-box;
@@ -21,16 +21,15 @@ const normalize = css`
         overflow: visible;
     }
     pre {
-        font-family: monospace, monospace;
         font-size: 1em;
+        font-family: monospace;
     }
     a {
         background-color: transparent;
     }
     abbr[title] {
-        border-bottom: none;
-        text-decoration: underline;
         text-decoration: underline dotted;
+        border-bottom: none;
     }
     b,
     strong {
@@ -39,17 +38,17 @@ const normalize = css`
     code,
     kbd,
     samp {
-        font-family: monospace, monospace;
         font-size: 1em;
+        font-family: monospace;
     }
     small {
         font-size: 80%;
     }
     sub,
     sup {
+        position: relative;
         font-size: 75%;
         line-height: 0;
-        position: relative;
         vertical-align: baseline;
     }
     sub {
@@ -66,10 +65,10 @@ const normalize = css`
     optgroup,
     select,
     textarea {
-        font-family: inherit;
-        font-size: 100%;
-        line-height: 1.15;
         margin: 0;
+        font-size: 100%;
+        font-family: inherit;
+        line-height: 1.15;
     }
     button,
     input {
@@ -89,8 +88,8 @@ const normalize = css`
     [type='button']::-moz-focus-inner,
     [type='reset']::-moz-focus-inner,
     [type='submit']::-moz-focus-inner {
-        border-style: none;
         padding: 0;
+        border-style: none;
     }
     button:-moz-focusring,
     [type='button']:-moz-focusring,
@@ -102,11 +101,11 @@ const normalize = css`
         padding: 0.35em 0.75em 0.625em;
     }
     legend {
-        box-sizing: border-box;
-        color: inherit;
         display: table;
+        box-sizing: border-box;
         max-width: 100%;
         padding: 0;
+        color: inherit;
         white-space: normal;
     }
     progress {
@@ -125,15 +124,15 @@ const normalize = css`
         height: auto;
     }
     [type='search'] {
-        -webkit-appearance: textfield;
         outline-offset: -2px;
+        -webkit-appearance: textfield;
     }
     [type='search']::-webkit-search-decoration {
         -webkit-appearance: none;
     }
     ::-webkit-file-upload-button {
-        -webkit-appearance: button;
         font: inherit;
+        -webkit-appearance: button;
     }
     details {
         display: block;
