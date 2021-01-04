@@ -12,7 +12,7 @@ The purpose of this project is to have a base for new applications.
 
 ### Getting Started
 
-Click the demo link or clone/download the repository on your local machine.
+Download the repository on your local machine.
 Create a .env.local file in project root folder. In this file add the following environment variables
 
 `MONGODB_URI`
