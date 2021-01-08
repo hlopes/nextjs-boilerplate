@@ -16,6 +16,4 @@ const Home: NextPage = () => {
     );
 };
 
-Home.propTypes = {};
-
 export default Home;

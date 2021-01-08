@@ -9,7 +9,7 @@ import Layout from '../../components/layout/Layout';
 import { Section, StyledToastContainer, Button } from '../../theme/styles';
 import { h2 } from '../../theme/typography';
 
-import SigninForm from './signin-form';
+import SigninForm from '../../components/signin-form';
 
 type HomeProps = {
     providers: {};

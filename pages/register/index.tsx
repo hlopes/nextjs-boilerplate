@@ -1,22 +1,30 @@
 import React, { useCallback, useEffect } from 'react';
+import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 import { compose } from 'recompose';
+
+// Next
 import { useRouter } from 'next/router';
 import { NextPage } from 'next';
 
+// Types
 import { Category } from '../../types/NotificationContext';
 
+// Common
 import { EMAIL_REGEX } from '../../utils/regexes';
 import {
     useNotificationContext,
     withNotificationProvider,
 } from '../../common/useNotificationsContext';
 import useUserContext from '../../common/useUserContext';
+import useAuthentication from '../../common/useAuthentication';
 import withGuest from '../../common/hocs/withGuest';
-import useRegister from '../../common/api-hooks/useRegister';
+
+// Components
 import Layout from '../../components/layout/Layout';
 import Input from '../../components/input';
 
+// Style
 import { h2 } from '../../theme/typography';
 import {
     Error,
@@ -25,14 +33,19 @@ import {
     Section,
 } from '../../theme/styles';
 
-import { Form } from './styles';
+const Form = styled.form`
+    width: 40rem;
+`;
 
 const Register: NextPage = () => {
     const router = useRouter();
     const { add, clear } = useNotificationContext();
     const { setUser } = useUserContext();
 
-    const [registerUser, { isLoading, data, error }] = useRegister();
+    const {
+        register: [registerUser, { isLoading, data, error }],
+    } = useAuthentication();
+
     const { handleSubmit, register, errors } = useForm();
 
     const submit = useCallback(
