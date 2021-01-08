@@ -2,20 +2,26 @@ import React, { FC, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { compose } from 'recompose';
 
+// Next
 import { useRouter } from 'next/router';
 
-import { Category } from '../../../types/NotificationContext';
+// Types
+import { Category } from '../../types/NotificationContext';
 
-import { EMAIL_REGEX } from '../../../utils/regexes';
+// Common
+import { EMAIL_REGEX } from '../../utils/regexes';
 import {
     useNotificationContext,
     withNotificationProvider,
-} from '../../../common/useNotificationsContext';
-import useLogin from '../../../common/api-hooks/useLogin';
-import useUserContext from '../../../common/useUserContext';
-import Input from '../../../components/input';
+} from '../../common/useNotificationsContext';
+import useUserContext from '../../common/useUserContext';
+import useAuthentication from '../../common/useAuthentication';
 
-import { Error, Button } from '../../../theme/styles';
+// Components
+import Input from '../input';
+
+// Styles
+import { Error, Button } from '../../theme/styles';
 
 import { Form } from './styles';
 
@@ -23,12 +29,18 @@ const SigninForm: FC = () => {
     const router = useRouter();
     const { setUser } = useUserContext();
     const { add, clear } = useNotificationContext();
-    const { handleSubmit, register, errors, getValues } = useForm();
+    const { handleSubmit, register, errors } = useForm();
 
-    const { username, password } = getValues();
-    const { error, data, isLoading, refetch } = useLogin(username, password);
+    const {
+        login: [loginUser, { error, data, isLoading }],
+    } = useAuthentication();
 
-    const submit = useCallback(() => refetch(), [refetch]);
+    const submit = useCallback(
+        ({ username, password }) => {
+            loginUser({ username, password });
+        },
+        [loginUser]
+    );
 
     const onSuccess = useCallback(() => {
         if (data?.user && data?.token) {
