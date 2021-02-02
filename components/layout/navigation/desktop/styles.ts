@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { black, white } from '../../../../theme/colors';
-import { shadow, navLinkStyle } from '../../../../theme/styles';
+import { black, white } from '@theme/colors';
+import { shadow, navLinkStyle } from '@theme/styles';
 
 export const Nav = styled.nav`
     display: flex;

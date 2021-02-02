@@ -2,23 +2,24 @@ import React from 'react';
 import { compose } from 'recompose';
 import { NextPage } from 'next';
 
-import { User } from '../../types/User';
+import withAuth from '@helpers/withAuth';
+import useUserContext from '@helpers/useUserContext';
 
-import withAuth from '../../common/hocs/withAuth';
-import useUserContext from '../../common/useUserContext';
-import Layout from '../../components/layout/Layout';
+import Layout from '@components/layout/Layout';
 
-import { Section } from '../../theme/styles';
+import { Section } from '@theme/styles';
 
 const Account: NextPage = () => {
-    const { user }: { user: User } = useUserContext();
+    const { result } = useUserContext();
 
     return (
         <Layout>
             <Section>
-                <div>{user?.image && <img src={user?.image} />}</div>
-                <div>{user.name}</div>
-                <div>{user.email}</div>
+                <div>
+                    {result?.user?.image && <img src={result?.user?.image} />}
+                </div>
+                <div>{result?.user.name}</div>
+                <div>{result?.user.email}</div>
             </Section>
         </Layout>
     );

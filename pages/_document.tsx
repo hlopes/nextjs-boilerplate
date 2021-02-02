@@ -1,9 +1,9 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-import { mediaStyle } from '../components/media/Media';
+import { mediaStyle } from '@components/media/Media';
 
-export default class AppDocument extends Document {
+class AppDocument extends Document {
     render() {
         return (
             <Html lang="en">
@@ -22,3 +22,5 @@ export default class AppDocument extends Document {
         );
     }
 }
+
+export default AppDocument;

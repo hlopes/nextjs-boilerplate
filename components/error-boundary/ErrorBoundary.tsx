@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 type Props = {
     children: any;
 };
+
 type State = {
     hasError: boolean;
 };

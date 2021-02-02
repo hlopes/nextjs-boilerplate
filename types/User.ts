@@ -4,5 +4,4 @@ export type User = {
     email: string;
     image: string | null;
     password: string;
-    isInternal: boolean;
 };

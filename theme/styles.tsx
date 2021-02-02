@@ -99,8 +99,9 @@ export const Button = styled.button`
 
 export const Error = styled.p`
     color: red;
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-align: left;
+    margin: 0 0 1rem;
 `;
 
 export const StyledToastContainer = styled(ToastContainer)`

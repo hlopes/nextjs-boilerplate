@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import { black, white } from '../../../../theme/colors';
-import { navLinkStyle, shadow } from '../../../../theme/styles';
-import { above, background } from '../../../../theme/layers';
+import { black, white } from '@theme/colors';
+import { navLinkStyle, shadow } from '@theme/styles';
+import { above, background } from '@theme/layers';
 
 export const Header = styled.header`
     position: relative;
@@ -16,7 +16,7 @@ type Props = {
 };
 
 export const Nav = styled.nav<Props>`
-    ${shadow}
+    ${shadow};
 
     position: fixed;
     top: 0;

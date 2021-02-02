@@ -1,17 +1,18 @@
 import React, { FC } from 'react';
-
 import Link from 'next/link';
 
-import useUserContext from '../../../../common/useUserContext';
-import { Media } from '../../../media/Media';
+import useUserContext from '@helpers/useUserContext';
+import useHydrationRender from '@helpers/useHydrationRender';
 
-import Button from '../../../button';
+import { Media } from '@components/media/Media';
+import Button from '@components/button';
 
 import NavLink from './nav-link/NavLink';
 
 import { Nav, ButtonWrapper } from './styles';
 
 const DesktopNavigation: FC = () => {
+    const isHydrationRender = useHydrationRender();
     const { isAuthenticated, logout } = useUserContext();
 
     return (
@@ -20,26 +21,26 @@ const DesktopNavigation: FC = () => {
                 <div>
                     <NavLink href={'/'}>Home</NavLink>
                     <NavLink href={'/forall'}>For All</NavLink>
-                    {!isAuthenticated && (
-                        <NavLink href={'/forguests'}>For Guests</NavLink>
-                    )}
-                    {isAuthenticated && (
-                        <NavLink href={'/forusers'}>For Users</NavLink>
-                    )}
+                    <NavLink href={'/forguests'}>For Guests</NavLink>
+                    <NavLink href={'/forusers'}>For Users</NavLink>
                 </div>
-                <ButtonWrapper>
-                    <Link href={isAuthenticated ? '/account' : '/signin'}>
-                        <Button>{isAuthenticated ? 'Account' : 'Login'}</Button>
-                    </Link>
-                    {!isAuthenticated && (
-                        <Link href={'/register'}>
-                            <Button>Register</Button>
+                {!isHydrationRender ? (
+                    <ButtonWrapper>
+                        <Link href={isAuthenticated ? '/account' : '/signin'}>
+                            <Button>
+                                {isAuthenticated ? 'Account' : 'Login'}
+                            </Button>
                         </Link>
-                    )}
-                    {isAuthenticated && (
-                        <Button onClick={logout}>Logout</Button>
-                    )}
-                </ButtonWrapper>
+                        {!isAuthenticated && (
+                            <Link href={'/register'}>
+                                <Button>Register</Button>
+                            </Link>
+                        )}
+                        {isAuthenticated && (
+                            <Button onClick={logout}>Logout</Button>
+                        )}
+                    </ButtonWrapper>
+                ) : null}
             </Nav>
         </Media>
     );

@@ -2,11 +2,14 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+import errors from '@utils/errors';
+import { connectToDatabase } from '@utils/mongodb';
+
 import { User } from '../../types/User';
 
-import { connectToDatabase } from '../../utils/mongodb';
-import errors from '../../utils/errors';
-
+/**
+ * Internal login without using the next/auth mechanism
+ * */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { email, password } = JSON.parse(req.body);
 

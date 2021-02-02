@@ -7,6 +7,9 @@ import { User } from '../../types/User';
 import { connectToDatabase } from '../../utils/mongodb';
 import errors from '../../utils/errors';
 
+/**
+ * Internal register without using the next/auth mechanism
+ * */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { name, email, password } = JSON.parse(req.body);
 
@@ -40,7 +43,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 email,
                 name,
                 password: hashed,
-                isInternal: true,
             };
 
             await db.collection('users').insertOne(user);

@@ -1,19 +1,22 @@
 import React, { FC, useCallback, useRef, useState, useEffect } from 'react';
-
 import Link from 'next/link';
 
-import useUserContext from '../../../../common/useUserContext';
-import { Media } from '../../../media/Media';
+import useHydrationRender from '@helpers/useHydrationRender';
+import useUserContext from '@helpers/useUserContext';
+
+import { Media } from '@components/media/Media';
+
+import { Button } from '@theme/styles';
 
 import NavLink from '../desktop/nav-link/NavLink';
-
-import { Button } from '../../../../theme/styles';
 
 import Burger from './burger-icon';
 
 import { Header, Nav, Overlay } from './styles';
 
 const MobileNavigation: FC = () => {
+    const isHydrationRender = useHydrationRender();
+
     const burgerRef = useRef(null);
     const sideMenuRef = useRef(null);
 
@@ -71,29 +74,33 @@ const MobileNavigation: FC = () => {
                     <li>
                         <Link href={'/forall'}>For All</Link>
                     </li>
-                    {!isAuthenticated && (
-                        <li>
-                            <NavLink href={'/forguests'}>For Guests</NavLink>
-                        </li>
-                    )}
-                    {isAuthenticated && (
-                        <li>
-                            <Link href={'/forusers'}>For users only</Link>
-                        </li>
-                    )}
                     <li>
-                        <Link href={isAuthenticated ? '/account' : '/signin'}>
-                            {isAuthenticated ? 'Account' : 'Login'}
-                        </Link>
+                        <NavLink href={'/forguests'}>For Guests</NavLink>
                     </li>
-                    {!isAuthenticated && (
-                        <li>
-                            <Link href={'/register'}>Register</Link>
-                        </li>
-                    )}
+                    <li>
+                        <Link href={'/forusers'}>For users only</Link>
+                    </li>
+                    {!isHydrationRender ? (
+                        <>
+                            <li>
+                                <Link
+                                    href={
+                                        isAuthenticated ? '/account' : '/signin'
+                                    }
+                                >
+                                    {isAuthenticated ? 'Account' : 'Login'}
+                                </Link>
+                            </li>
+                            {!isAuthenticated && (
+                                <li>
+                                    <Link href={'/register'}>Register</Link>
+                                </li>
+                            )}
+                        </>
+                    ) : null}
                 </ul>
                 <div>
-                    {isAuthenticated && (
+                    {isHydrationRender && isAuthenticated && (
                         <Button onClick={logoutAction}>Logout</Button>
                     )}
                 </div>

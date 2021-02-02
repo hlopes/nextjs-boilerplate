@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { grey } from '../../theme/colors';
-import { shadow } from '../../theme/styles';
+import { grey } from '@theme/colors';
+import { shadow } from '@theme/styles';
 
 export const StyledButton = styled.button`
     height: 3.6rem;

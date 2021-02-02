@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 
-import { MediaContextProvider } from '../../components/media/Media';
-
-import Header from './header';
-import MobileNavigation from './navigation/mobile';
-import DesktopNavigation from './navigation/desktop';
+import { MediaContextProvider } from '@components/media/Media';
+import DocumentHead from '@components/layout/document-head';
+import MobileNavigation from '@components/layout/navigation/mobile';
+import DesktopNavigation from '@components/layout/navigation/desktop';
+import Footer from '@components/layout/footer';
 
 type Props = {
     children: any;
@@ -13,12 +13,13 @@ type Props = {
 const Layout: FC<Props> = ({ children }: Props) => {
     return (
         <main>
-            <Header />
+            <DocumentHead />
             <MediaContextProvider>
                 <DesktopNavigation />
                 <MobileNavigation />
             </MediaContextProvider>
             {children}
+            <Footer />
         </main>
     );
 };

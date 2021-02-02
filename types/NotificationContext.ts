@@ -9,10 +9,10 @@ export type Notification = {
     onClose?: () => void | undefined;
 };
 
-export interface NotificationContext {
+export type NotificationContext = {
     notifications: any[];
     add: (notification: Notification) => void;
     remove: (id: string) => void;
     filterByCategory: (category: string) => void;
     clear: () => void;
-}
+};

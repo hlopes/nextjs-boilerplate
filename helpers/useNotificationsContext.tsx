@@ -109,14 +109,4 @@ export const NotificationContextProvider: FC = (props) => {
 export const useNotificationContext = (): NotificationContextType =>
     useContext<NotificationContextType>(NotificationContext);
 
-export function withNotificationProvider(Component) {
-    return function WithNotificationProvider(props) {
-        return (
-            <NotificationContextProvider>
-                <Component {...props} />
-            </NotificationContextProvider>
-        );
-    };
-}
-
 export default NotificationContext;

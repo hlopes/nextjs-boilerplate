@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import debounce from 'lodash/debounce';
 
-import { findBreakpointAtWidth } from '../components/media/Media';
+import { findBreakpointAtWidth } from '@components/media/Media';
 
 import useHydrationRender from './useHydrationRender';
 

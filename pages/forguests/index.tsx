@@ -1,8 +1,10 @@
 import React from 'react';
 import { NextPage } from 'next';
 
-import Layout from '../../components/layout/Layout';
-import { Section } from '../../theme/styles';
+import withGuest from '@helpers/withGuest';
+import Layout from '@components/layout/Layout';
+
+import { Section } from '@theme/styles';
 
 const ForGuests: NextPage = () => (
     <Layout>
@@ -12,4 +14,4 @@ const ForGuests: NextPage = () => (
     </Layout>
 );
 
-export default ForGuests;
+export default withGuest(ForGuests);

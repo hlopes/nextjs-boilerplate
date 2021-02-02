@@ -1,8 +1,10 @@
 import React from 'react';
 import { NextPage } from 'next';
 
-import Layout from '../../components/layout/Layout';
-import { Section } from '../../theme/styles';
+import withAuth from '@helpers/withAuth';
+import Layout from '@components/layout/Layout';
+
+import { Section } from '@theme/styles';
 
 const ForUsers: NextPage = () => (
     <Layout>
@@ -12,4 +14,4 @@ const ForUsers: NextPage = () => (
     </Layout>
 );
 
-export default ForUsers;
+export default withAuth(ForUsers);

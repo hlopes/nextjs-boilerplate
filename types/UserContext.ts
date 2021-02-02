@@ -1,8 +1,26 @@
 import { User } from './User';
 
-export interface UserContext {
+export type Result = {
     user: User;
-    setUser: (user: User) => void;
+    token: string;
+    message?: string;
+};
+
+type LoginArgs = {
+    username: string;
+    password: string;
+};
+
+type RegisterArgs = LoginArgs & {
+    name: string;
+};
+
+export type UserContext = {
     isAuthenticated: boolean;
-    logout: () => void;
-}
+    isLoading: boolean;
+    error: null;
+    result: Result;
+    loginUser?: (args: LoginArgs) => void;
+    registerUser?: (args: RegisterArgs) => void;
+    logout?: () => void;
+};

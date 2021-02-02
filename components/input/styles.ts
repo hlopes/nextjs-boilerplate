@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 type Props = {
-    ref: any
-}
+    ref: any;
+};
 
 export const StyledInput = styled.input<Props>`
     box-sizing: content-box;
@@ -17,6 +17,5 @@ export const StyledInput = styled.input<Props>`
     border-radius: 0;
     outline: none;
     box-shadow: none;
-    transition: border 0.3s, -webkit-box-shadow 0.3s;
     transition: box-shadow 0.3s, border 0.3s;
 `;

@@ -1,9 +1,10 @@
 import React from 'react';
 import { NextPage } from 'next';
 
-import Layout from '../components/layout/Layout';
-import { Section } from '../theme/styles';
-import { h2 } from '../theme/typography';
+import Layout from '@components/layout/Layout';
+
+import { Section } from '@theme/styles';
+import { h2 } from '@theme/typography';
 
 const Home: NextPage = () => {
     return (

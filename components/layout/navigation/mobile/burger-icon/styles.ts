@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { white } from '../../../../../theme/colors';
-import { burger } from '../../../../../theme/layers';
+import { white } from '@theme/colors';
+import { burger } from '@theme/layers';
 
 export type BaseProps = {
     isOpen: boolean;
@@ -29,7 +29,7 @@ export const Icon = styled.div`
 `;
 
 export const Horizontal = styled.div<BaseProps>`
-    ${commonSpinner}
+    ${commonSpinner};
 
     position: relative;
     float: left;
@@ -38,7 +38,7 @@ export const Horizontal = styled.div<BaseProps>`
 `;
 
 export const DiagonalPart1 = styled.div<BaseProps>`
-    ${commonSpinner}
+    ${commonSpinner};
 
     position: relative;
     float: left;
@@ -47,7 +47,7 @@ export const DiagonalPart1 = styled.div<BaseProps>`
 `;
 
 export const DiagonalPart2 = styled.div<BaseProps>`
-    ${commonSpinner}
+    ${commonSpinner};
 
     position: relative;
     float: left;

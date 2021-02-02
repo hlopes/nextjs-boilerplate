@@ -1,76 +1,51 @@
 import React, { FC, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { compose } from 'recompose';
-
-// Next
 import { useRouter } from 'next/router';
 
-// Types
+import { EMAIL_REGEX } from '@utils/regexes';
+import { useNotificationContext } from '@helpers/useNotificationsContext';
+import useUserContext from '@helpers/useUserContext';
+
+import { Error, Button } from '@theme/styles';
+
 import { Category } from '../../types/NotificationContext';
 
-// Common
-import { EMAIL_REGEX } from '../../utils/regexes';
-import {
-    useNotificationContext,
-    withNotificationProvider,
-} from '../../common/useNotificationsContext';
-import useUserContext from '../../common/useUserContext';
-import useAuthentication from '../../common/useAuthentication';
-
-// Components
 import Input from '../input';
-
-// Styles
-import { Error, Button } from '../../theme/styles';
 
 import { Form } from './styles';
 
 const SigninForm: FC = () => {
     const router = useRouter();
-    const { setUser } = useUserContext();
+    const { loginUser, isLoading, error, result } = useUserContext();
     const { add, clear } = useNotificationContext();
     const { handleSubmit, register, errors } = useForm();
 
-    const {
-        login: [loginUser, { error, data, isLoading }],
-    } = useAuthentication();
-
-    const submit = useCallback(
-        ({ username, password }) => {
-            loginUser({ username, password });
-        },
-        [loginUser]
-    );
-
     const onSuccess = useCallback(() => {
-        if (data?.user && data?.token) {
-            localStorage.setItem('jwt', data.token);
-            localStorage.setItem('user', JSON.stringify(data.user));
-
-            setUser(data.user);
-
+        if (result?.user) {
             router.push('/');
         }
-    }, [data, router, setUser]);
+    }, [result, router]);
 
     useEffect(() => {
         clear();
 
-        if (error || data?.errorCode) {
+        if (error) {
             add({
-                message: error['message'] ?? data?.message,
+                // @ts-ignore
+                message: error?.message ?? '',
                 category: Category.Error,
             });
-        } else if (data?.user) {
+        } else if (result?.user) {
             add({
                 category: Category.Success,
-                onClose: onSuccess,
             });
+
+            onSuccess();
         }
-    }, [clear, add, error, onSuccess, data]);
+    }, [clear, add, error, onSuccess, result]);
 
     return (
-        <Form onSubmit={handleSubmit(submit)}>
+        <Form onSubmit={handleSubmit(loginUser)}>
             {isLoading && 'is Loading...'}
             <Input
                 name="username"
@@ -96,6 +71,4 @@ const SigninForm: FC = () => {
     );
 };
 
-const enhanced = compose(withNotificationProvider);
-
-export default enhanced(SigninForm);
+export default SigninForm;
