@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import errors from '@utils/errors';
 import { connectToDatabase } from '@utils/mongodb';
 
-import { User } from '../../types/User';
+import { User } from '../../../types/User';
 
 /**
  * Internal login without using the next/auth mechanism

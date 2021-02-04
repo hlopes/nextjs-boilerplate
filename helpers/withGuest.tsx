@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 
 import useUserContext from './useUserContext';
@@ -8,7 +8,7 @@ export default function withGuest(Component) {
         const router = useRouter();
 
         const { result } = useUserContext();
-console.log("### result = ", result);
+
         if (result?.user?.email) {
             router.push('/');
         }

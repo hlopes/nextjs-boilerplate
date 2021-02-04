@@ -27,4 +27,8 @@ export default {
         errorCode: 106,
         message: 'Error registering User',
     },
+    USER_LIST_ERROR: {
+        errorCode: 107,
+        message: 'Error retrieving Users',
+    },
 };

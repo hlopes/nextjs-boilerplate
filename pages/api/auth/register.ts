@@ -2,10 +2,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-import { User } from '../../types/User';
+import { connectToDatabase } from '@utils/mongodb';
+import errors from '@utils/errors';
 
-import { connectToDatabase } from '../../utils/mongodb';
-import errors from '../../utils/errors';
+import { User } from '../../../types/User';
 
 /**
  * Internal register without using the next/auth mechanism

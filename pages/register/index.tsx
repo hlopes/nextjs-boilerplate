@@ -1,16 +1,14 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
-import { compose } from 'recompose';
 
-import { useRouter } from 'next/router';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
 import { EMAIL_REGEX } from '@utils/regexes';
 
 import { useNotificationContext } from '@helpers/useNotificationsContext';
 import useUserContext from '@helpers/useUserContext';
-import withGuest from '@helpers/withGuest';
 
 import Layout from '@components/layout/Layout';
 import Input from '@components/input';
@@ -31,12 +29,6 @@ const Register: NextPage = () => {
 
     const { handleSubmit, register, errors } = useForm();
 
-    const onSuccess = useCallback(() => {
-        if (result?.user && result?.token) {
-            router.push('/');
-        }
-    }, [result, router]);
-
     useEffect(() => {
         clear();
 
@@ -51,9 +43,9 @@ const Register: NextPage = () => {
                 category: Category.Success,
             });
 
-            onSuccess();
+            router.push('/');
         }
-    }, [add, error, result, onSuccess, clear]);
+    }, [add, error, result, clear, router]);
 
     return (
         <Layout>
@@ -93,6 +85,4 @@ const Register: NextPage = () => {
     );
 };
 
-const enhanced = compose(withGuest);
-
-export default enhanced(Register);
+export default Register;

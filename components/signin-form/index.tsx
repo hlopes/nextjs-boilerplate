@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
@@ -20,12 +20,6 @@ const SigninForm: FC = () => {
     const { add, clear } = useNotificationContext();
     const { handleSubmit, register, errors } = useForm();
 
-    const onSuccess = useCallback(() => {
-        if (result?.user) {
-            router.push('/');
-        }
-    }, [result, router]);
-
     useEffect(() => {
         clear();
 
@@ -40,9 +34,9 @@ const SigninForm: FC = () => {
                 category: Category.Success,
             });
 
-            onSuccess();
+            router.push('/');
         }
-    }, [clear, add, error, onSuccess, result]);
+    }, [clear, add, error, result, router]);
 
     return (
         <Form onSubmit={handleSubmit(loginUser)}>

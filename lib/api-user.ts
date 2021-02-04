@@ -4,7 +4,7 @@ export const login = async (email: string, password: string) => {
         return null;
     }
 
-    const result = await fetch('/api/login', {
+    const result = await fetch('/api/auth/login', {
         method: 'POST',
         body: JSON.stringify({
             email,
@@ -25,7 +25,7 @@ export const register = async (
         return null;
     }
 
-    const result = await fetch('/api/register', {
+    const result = await fetch('/api/auth/register', {
         method: 'POST',
         body: JSON.stringify({
             name,

@@ -23,8 +23,7 @@
       "@helpers/*": ["helpers/*"],
       "@components/*": ["components/*"],
       "@utils/*": ["utils/*"],
-      "@theme/*": ["theme/*"],
-      "@types/*": ["types/*"]
+      "@theme/*": ["theme/*"]
     }
   },
   "include": [
