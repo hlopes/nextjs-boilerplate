@@ -34,7 +34,6 @@ export const globalStyles = (
                 overflow-x: hidden;
                 font-size: 1.6rem;
                 font-family: Helvetica, Arial, sans-serif;
-                background: papayawhip;
                 -webkit-font-smoothing: antialiased;
             }
 
