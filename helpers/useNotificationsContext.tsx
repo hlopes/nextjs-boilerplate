@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import {
     NotificationContext as NotificationContextType,
     Notification,
-} from '@types/NotificationContext';
+} from '../types/NotificationContext';
 
 const NotificationContext = React.createContext<NotificationContextType>({
     notifications: [],

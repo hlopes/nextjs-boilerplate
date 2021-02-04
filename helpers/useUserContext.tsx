@@ -9,8 +9,8 @@ import React, {
 
 import { login, register } from '@lib/api-user';
 
-import { User } from '@types/User';
-import { UserContext as UserContextType, Result } from '@types/UserContext';
+import { User } from '../types/User';
+import { UserContext as UserContextType, Result } from '../types/UserContext';
 
 type UserContextProviderProps = {
     children: any;
