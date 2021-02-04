@@ -7,9 +7,13 @@ import useHydrationRender from '@helpers/useHydrationRender';
 import { Media } from '@components/media/Media';
 import Button from '@components/button';
 
-import NavLink from './nav-link/NavLink';
+import Burger from '@components/layout/navigation/mobile/burger-icon';
+import DarkModeToggle from '@components/dark-mode-toggle';
+import { Header } from '@components/layout/navigation/mobile/styles';
 
 import { Nav, ButtonWrapper } from './styles';
+
+import NavLink from './nav-link/NavLink';
 
 const DesktopNavigation: FC = () => {
     const isHydrationRender = useHydrationRender();
@@ -41,6 +45,7 @@ const DesktopNavigation: FC = () => {
                         )}
                     </ButtonWrapper>
                 ) : null}
+                <DarkModeToggle />
             </Nav>
         </Media>
     );

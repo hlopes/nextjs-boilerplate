@@ -1,21 +1,17 @@
 import styled from '@emotion/styled';
 
-import { black, white } from '@theme/colors';
-import { navLinkStyle, shadow } from '@theme/styles';
+import { black } from '@theme/colors';
+import { getNavLinkStyle, shadow } from '@theme/styles';
 import { above, background } from '@theme/layers';
 
 export const Header = styled.header`
     position: relative;
     height: var(--header-height);
-    color: ${white};
-    background-color: ${black};
+    color: ${({ theme }: { theme: any }) => theme.text.primary};
+    background-color: ${({ theme }: { theme: any }) => theme.bg.primary};
 `;
 
-type Props = {
-    isOpen?: boolean;
-};
-
-export const Nav = styled.nav<Props>`
+export const Nav = styled.nav<{ isOpen: boolean }>`
     ${shadow};
 
     position: fixed;
@@ -27,9 +23,9 @@ export const Nav = styled.nav<Props>`
     margin: 0;
     padding: var(--header-height) 0 6rem 0;
     overflow-y: auto;
-    color: ${white};
-    background-color: ${black};
-    transform: ${({ isOpen }) =>
+    color: ${({ theme }: { theme: any }) => theme.text.primary};
+    background-color: ${({ theme }: { theme: any }) => theme.bg.primary};
+    transform: ${({ isOpen }: { theme: any; isOpen: boolean }) =>
         isOpen ? 'translateX(0)' : 'translateX(-100vw)'};
     transition: transform 0.5s ease, opacity ease 0.2s;
     will-change: transform;
@@ -43,7 +39,7 @@ export const Nav = styled.nav<Props>`
         list-style: none;
 
         a {
-            ${navLinkStyle};
+            ${({ theme }) => getNavLinkStyle(theme)}
 
             display: block;
             padding: 1.6rem;
@@ -51,14 +47,16 @@ export const Nav = styled.nav<Props>`
     }
 `;
 
-export const Overlay = styled.div<Props>`
+export const Overlay = styled.div`
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: ${({ isOpen }) => (isOpen ? above : background)};
+    z-index: ${({ isOpen }: { theme?: any; isOpen: boolean }) =>
+        isOpen ? above : background};
     background-color: ${black};
-    opacity: ${({ isOpen }) => (isOpen ? 0.5 : 0)};
+    opacity: ${({ isOpen }: { theme?: any; isOpen: boolean }) =>
+        isOpen ? 0.5 : 0};
     transition: opacity ease 1s;
 `;

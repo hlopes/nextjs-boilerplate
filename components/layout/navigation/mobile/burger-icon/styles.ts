@@ -1,18 +1,17 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { white } from '@theme/colors';
 import { burger } from '@theme/layers';
 
 export type BaseProps = {
     isOpen: boolean;
 };
 
-const commonSpinner = css`
+const getCommonSpinnerStyle = (theme) => css`
     box-sizing: border-box;
     width: 100%;
     height: 0.3rem;
-    background-color: ${white};
+    background-color: ${theme.text.primary};
     transition: all 0.3s;
 `;
 
@@ -29,7 +28,7 @@ export const Icon = styled.div`
 `;
 
 export const Horizontal = styled.div<BaseProps>`
-    ${commonSpinner};
+    ${({ theme }) => getCommonSpinnerStyle(theme)};
 
     position: relative;
     float: left;
@@ -38,7 +37,7 @@ export const Horizontal = styled.div<BaseProps>`
 `;
 
 export const DiagonalPart1 = styled.div<BaseProps>`
-    ${commonSpinner};
+    ${({ theme }) => getCommonSpinnerStyle(theme)};
 
     position: relative;
     float: left;
@@ -47,7 +46,7 @@ export const DiagonalPart1 = styled.div<BaseProps>`
 `;
 
 export const DiagonalPart2 = styled.div<BaseProps>`
-    ${commonSpinner};
+    ${({ theme }) => getCommonSpinnerStyle(theme)};
 
     position: relative;
     float: left;

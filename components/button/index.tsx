@@ -2,13 +2,13 @@ import React, { FC, ForwardedRef, forwardRef } from 'react';
 
 import { StyledButton } from './styles';
 
-type Props = {
+type ButtonProps = {
     children?: any;
     onClick?: () => void;
 };
 
-const Button: FC<Props> = forwardRef(
-    ({ children, ...props }: Props, ref: ForwardedRef<any>) => {
+const Button: FC<ButtonProps> = forwardRef(
+    ({ children, ...props }: ButtonProps, ref: ForwardedRef<any>) => {
         const { ...remainingProps } = props;
 
         return (

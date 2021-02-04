@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 
 import normalize from './normalize';
 import variables from './variables';
-import { black, grey, white } from './colors';
+import { black, grey, white, red } from './colors';
 
 export const globalStyles = (
     <Global
@@ -58,21 +58,6 @@ export const shadow = css`
         0 0.1rem 0.5rem 0 rgba(0, 0, 0, 0.2);
 `;
 
-export const navLinkStyle = css`
-    display: inline-block;
-    padding: 0 1.5rem;
-    color: ${white};
-    font-size: 1.4rem;
-    text-decoration: none;
-    transition: background-color 0.3s;
-
-    &:hover,
-    &:active {
-        color: ${black};
-        background-color: ${grey};
-    }
-`;
-
 export const Section = styled.section`
     padding: 1rem;
 `;
@@ -98,10 +83,10 @@ export const Button = styled.button`
 `;
 
 export const Error = styled.p`
-    color: red;
+    margin: 0 0 1rem;
+    color: ${red};
     font-size: 1rem;
     text-align: left;
-    margin: 0 0 1rem;
 `;
 
 export const StyledToastContainer = styled(ToastContainer)`
@@ -109,3 +94,52 @@ export const StyledToastContainer = styled(ToastContainer)`
         color: ${white};
     }
 `;
+
+export const LIGHT_THEME = {
+    bg: {
+        primary: '#eff0f5',
+        secondary: '#ffffff',
+        inset: '#e2e4e8',
+        input: 'rgba(65,67,78,0.12)',
+    },
+    text: {
+        primary: '#050505',
+        secondary: '#2f3037',
+        tertiary: '#525560',
+        placeholder: 'rgba(82,85,96,0.5)',
+        onPrimary: '#ffffff',
+    },
+};
+
+export const DARK_THEME = {
+    bg: {
+        primary: '#050505',
+        secondary: '#111111',
+        inset: '#111111',
+        input: 'rgba(191,193,201,0.12)',
+    },
+    text: {
+        primary: '#fbfbfc',
+        secondary: '#e3e4e8',
+        tertiary: '#a9abb6',
+        placeholder: 'rgba(145,148,161,0.5)',
+        onPrimary: '#050505',
+    },
+};
+
+export const getNavLinkStyle = (theme) => {
+    return css`
+        display: inline-block;
+        padding: 0 1.5rem;
+        color: ${theme.text.primary};
+        font-size: 1.4rem;
+        text-decoration: none;
+        transition: background-color 0.3s;
+
+        &:hover,
+        &:active {
+            color: ${black};
+            background-color: ${grey};
+        }
+    `;
+};

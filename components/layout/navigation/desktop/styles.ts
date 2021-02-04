@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
 
-import { black, white } from '@theme/colors';
-import { shadow, navLinkStyle } from '@theme/styles';
+import { getNavLinkStyle, shadow } from '@theme/styles';
 
 export const Nav = styled.nav`
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
     height: 6.4rem;
     padding: 1rem;
-    color: ${white};
+    color: ${({ theme }: { theme: any }) => theme.text.primary};
     line-height: 6.4rem;
-    background-color: ${black};
+    background-color: ${({ theme }: { theme: any }) => theme.bg.primary};
 
     ${shadow}
 
@@ -21,7 +21,7 @@ export const Nav = styled.nav`
 `;
 
 export const ButtonWrapper = styled.div`
-    text-align: right;
+    text-align: center;
 
     & Button:last-of-type {
         margin-left: 1rem;
@@ -29,5 +29,5 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const StyledLink = styled.a`
-    ${navLinkStyle}
+    ${({ theme }) => getNavLinkStyle(theme)}
 `;

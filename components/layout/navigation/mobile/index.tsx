@@ -5,6 +5,7 @@ import useHydrationRender from '@helpers/useHydrationRender';
 import useUserContext from '@helpers/useUserContext';
 
 import { Media } from '@components/media/Media';
+import DarkModeToggle from '@components/dark-mode-toggle';
 
 import { Button } from '@theme/styles';
 
@@ -64,6 +65,7 @@ const MobileNavigation: FC = () => {
                     isOpen={isSideMenuOpen}
                     onOpen={toggleSideMenu}
                 />
+                <DarkModeToggle />
             </Header>
             <Overlay isOpen={isSideMenuOpen} />
             <Nav ref={sideMenuRef} isOpen={isSideMenuOpen}>

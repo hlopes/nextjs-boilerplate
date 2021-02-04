@@ -1,5 +1,7 @@
 import React, { FC, ForwardedRef, forwardRef } from 'react';
 
+import useHydrationRender from '@helpers/useHydrationRender';
+
 import {
     BaseProps,
     Icon,
@@ -15,13 +17,15 @@ type Props = BaseProps & {
 
 const Burger: FC<Props> = forwardRef<HTMLDivElement, Props>(
     ({ isOpen, onOpen }: Props, ref: ForwardedRef<HTMLDivElement>) => {
-        return (
+        const isHydrationRender = useHydrationRender();
+
+        return !isHydrationRender ? (
             <Icon ref={ref} onClick={onOpen}>
                 <DiagonalPart1 isOpen={isOpen} />
                 <Horizontal isOpen={isOpen} />
                 <DiagonalPart2 isOpen={isOpen} />
             </Icon>
-        );
+        ) : null;
     }
 );
 
