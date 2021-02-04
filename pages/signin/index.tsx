@@ -11,10 +11,16 @@ import { Section, Button } from '@theme/styles';
 import { h2 } from '@theme/typography';
 
 const SignIn: NextPage = () => {
-    const [session] = useSession();
+    const [session, isLoading] = useSession();
 
     const handleAuthLogin = useCallback(() => signIn(), []);
-    const handleAuthLogout = useCallback(() => signOut(), []);
+    const handleAuthLogout = useCallback(
+        () =>
+            signOut({
+                callbackUrl: '/',
+            }),
+        []
+    );
 
     return (
         <Layout>
@@ -27,6 +33,7 @@ const SignIn: NextPage = () => {
             </Section>
             <Section>
                 <h2>Next Authentication</h2>
+                {isLoading && <p>loading...</p>}
                 {!session && (
                     <>
                         <p>Not signed in</p>

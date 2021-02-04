@@ -7,17 +7,22 @@ const options = {
     providers: [
         Providers.Email({
             server: {
-                host: process.env.EMAIL_SERVER_HOST,
+                host: process.env.NEXTAUTH_EMAIL_SERVER_HOST,
                 // @ts-ignore
-                port: process.env.EMAIL_SERVER_PORT,
+                port: process.env.NEXTAUTH_EMAIL_SERVER_PORT,
                 auth: {
-                    user: process.env.EMAIL_SERVER_USER,
-                    pass: process.env.EMAIL_SERVER_PASSWORD,
+                    user: process.env.NEXTAUTH_EMAIL_SERVER_USER,
+                    pass: process.env.NEXTAUTH_EMAIL_SERVER_PASSWORD,
                 },
             },
-            from: process.env.EMAIL_FROM,
+            from: process.env.NEXTAUTH_EMAIL_FROM,
         }),
-        // ...add more providers here
+        Providers.Google({
+            clientId: process.env.NEXTAUTH_GOOGLE_CLIENT_ID,
+            clientSecret: process.env.NEXTAUTH_GOOGLE_CLIENT_SECRET,
+            authorizationUrl:
+                'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code',
+        }),
     ],
     // @link https://next-auth.js.org/configuration/databases
     database: process.env.NEXTAUTH_DATABASE_URL,
