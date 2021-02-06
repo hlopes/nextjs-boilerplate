@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import omit from 'lodash/omit';
 
 import errors from '@utils/errors';
 import { connectToDatabase } from '@utils/mongodb';
@@ -11,7 +10,9 @@ export const getUsers = async () => {
 
     return users.map((user) => ({
         ...user,
-        _id: user._id.toString(),
+        _id: user._id?.toString(),
+        createdAt: user.createdAt ? new Date(user.createdAt).toString() : null,
+        updatedAt: user.updatedAt ? new Date(user.updatedAt).toString() : null,
     }));
 };
 
