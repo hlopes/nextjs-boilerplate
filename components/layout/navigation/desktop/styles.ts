@@ -9,9 +9,9 @@ export const Nav = styled.nav`
     width: 100%;
     height: 6.4rem;
     padding: 1rem;
-    color: ${({ theme }: { theme: any }) => theme.text.primary};
+    color: ${({ theme }: { theme: any }) => theme.text?.primary};
     line-height: 6.4rem;
-    background-color: ${({ theme }: { theme: any }) => theme.bg.primary};
+    background-color: ${({ theme }: { theme: any }) => theme.bg?.primary};
 
     ${shadow}
 

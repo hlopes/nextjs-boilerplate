@@ -7,8 +7,8 @@ import { above, background } from '@theme/layers';
 export const Header = styled.header`
     position: relative;
     height: var(--header-height);
-    color: ${({ theme }: { theme: any }) => theme.text.primary};
-    background-color: ${({ theme }: { theme: any }) => theme.bg.primary};
+    color: ${({ theme }: { theme: any }) => theme.text?.primary};
+    background-color: ${({ theme }: { theme: any }) => theme.bg?.primary};
 `;
 
 export const Nav = styled.nav<{ isOpen: boolean }>`
@@ -23,8 +23,8 @@ export const Nav = styled.nav<{ isOpen: boolean }>`
     margin: 0;
     padding: var(--header-height) 0 6rem 0;
     overflow-y: auto;
-    color: ${({ theme }: { theme: any }) => theme.text.primary};
-    background-color: ${({ theme }: { theme: any }) => theme.bg.primary};
+    color: ${({ theme }: { theme: any }) => theme.text?.primary};
+    background-color: ${({ theme }: { theme: any }) => theme.bg?.primary};
     transform: ${({ isOpen }: { theme: any; isOpen: boolean }) =>
         isOpen ? 'translateX(0)' : 'translateX(-100vw)'};
     transition: transform 0.5s ease, opacity ease 0.2s;

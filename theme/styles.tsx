@@ -130,7 +130,7 @@ export const getNavLinkStyle = (theme) => {
     return css`
         display: inline-block;
         padding: 0 1.5rem;
-        color: ${theme.text.primary};
+        color: ${theme.text?.primary};
         font-size: 1.4rem;
         text-decoration: none;
         transition: background-color 0.3s;
