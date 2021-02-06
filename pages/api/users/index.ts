@@ -9,10 +9,15 @@ export const getUsers = async () => {
 
     const users = await db.collection('users').find().toArray();
 
-    return users.map((user) => ({
-        ...user,
-        _id: user._id.toString(),
-    }));
+    return users.map((user) =>
+        omit(
+            {
+                ...user,
+                _id: user._id?.toString(),
+            },
+            ['createdAt', 'updatedAt']
+        )
+    );
 };
 
 /**
