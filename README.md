@@ -45,15 +45,17 @@ Create a .env.local file in project root folder. In this file add the following 
 
 ### Built With
 
-- [NextJS](https://nextjs.org/)
-- [Next/Auth](https://next-auth.js.org/)
-- [React JS](https://reactjs.org/)
-- [React Toastify](https://fkhadra.github.io/react-toastify/introduction/)
-- [React Query](https://react-query.tanstack.com/)
-- [Emotion](https://emotion.sh/docs/introduction)
-- [Testing Library](https://testing-library.com/)
-- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-- [JWT Authentication](https://jwt.io/)
+-   [NextJS](https://nextjs.org/)
+-   [Next/Auth](https://next-auth.js.org/)
+-   [React JS](https://reactjs.org/)
+-   [React Toastify](https://fkhadra.github.io/react-toastify/introduction/)
+-   [React Query](https://react-query.tanstack.com/)
+-   [Emotion](https://emotion.sh/docs/introduction)
+-   [Testing Library](https://testing-library.com/)
+-   [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+-   [JWT Authentication](https://jwt.io/)
+
+-   Commit conventions with [commitlint](https://commitlint.js.org/), [husky](https://typicode.github.io/husky) and [lintstaged](https://github.com/okonet/lint-staged).
 
 ## Getting Started
 
