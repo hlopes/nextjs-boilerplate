@@ -7,7 +7,7 @@ import Providers from '@helpers/Providers';
 
 import ErrorBoundary from '@components/error-boundary/ErrorBoundary';
 
-import { globalStyles } from '../theme/styles';
+import { globalStyles } from '@theme/styles';
 
 const App = ({ Component, pageProps }: AppProps) => (
     <>

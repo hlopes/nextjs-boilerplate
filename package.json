@@ -6,7 +6,7 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "yarn eslint && yarn stylelint \"**/*.ts\"",
+        "lint": "yarn eslint && yarn stylelint \"**/*.ts(x)\"",
         "test": "jest",
         "test:watch": "jest --watch",
         "test:watch:quick": "yarn test:watch --no-coverage",

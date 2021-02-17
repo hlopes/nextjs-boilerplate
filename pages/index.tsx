@@ -25,6 +25,8 @@ type HomeProps = {
 };
 
 const Home: NextPage<HomeProps> = ({ users }: HomeProps) => {
+    const a = 10;
+
     return (
         <Layout>
             <Section>
