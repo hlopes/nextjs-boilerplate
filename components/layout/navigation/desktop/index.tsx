@@ -6,10 +6,7 @@ import useHydrationRender from '@helpers/useHydrationRender';
 
 import { Media } from '@components/media/Media';
 import Button from '@components/button';
-
-import Burger from '@components/layout/navigation/mobile/burger-icon';
 import DarkModeToggle from '@components/dark-mode-toggle';
-import { Header } from '@components/layout/navigation/mobile/styles';
 
 import { Nav, ButtonWrapper } from './styles';
 
