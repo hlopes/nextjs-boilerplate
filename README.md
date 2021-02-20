@@ -47,8 +47,6 @@ Create a .env.local file in project root folder. In this file add the following 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
