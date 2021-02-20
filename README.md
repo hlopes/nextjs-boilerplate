@@ -21,20 +21,6 @@ Create a .env.local file in project root folder. In this file add the following 
 
 `JWT_SECRET`
 
-`NEXTAUTH_URL`
-
-`NEXTAUTH_DATABASE_URL`
-
-`EMAIL_SERVER_USER`
-
-`EMAIL_SERVER_PASSWORD`
-
-`EMAIL_SERVER_HOST`
-
-`EMAIL_SERVER_PORT`
-
-`EMAIL_FROM`
-
 ##### Install dependencies
 
 `yarn install`
